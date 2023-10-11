@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routine Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Routine Page</h1>
+        <form id="routineForm">
+            <label for="routineName">Routine Name:</label>
+            <input type="text" id="routineName" name="routineName" required><br><br>
+
+            <label for="exercise">Exercise:</label>
+            <select id="exercise" name="exercise" required>
+                <!-- Exercise options will be populated dynamically using JavaScript -->
+            </select><br><br>
+
+            <label for="sets">Sets:</label>
+            <input type="number" id="sets" name="sets" required><br><br>
+
+            <label for="weight">Weight (optional):</label>
+            <input type="number" id="weight" name="weight"><br><br>
+
+            <label for="time">Time (minutes, optional):</label>
+            <input type="number" id="time" name="time"><br><br>
+
+            <input type="submit" value="Add to Routine">
+        </form>
+    </div>
+
+    <script>
+        // Mock exercise data (you can fetch this from your server)
+        var exercises = [
+            { id: 1, name: 'Exercise 1' },
+            { id: 2, name: 'Exercise 2' },
+            { id: 3, name: 'Exercise 3' }
+        ];
+
+        // Populate the exercise dropdown dynamically
+        var exerciseDropdown = document.getElementById('exercise');
+        exercises.forEach(function(exercise) {
+            var option = document.createElement('option');
+            option.value = exercise.id;
+            option.text = exercise.name;
+            exerciseDropdown.appendChild(option);
+        });
+
+        document.getElementById('routineForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var routineName = document.getElementById('routineName').value;
+            var exerciseId = document.getElementById('exercise').value;
+            var sets = document.getElementById('sets').value;
+            var weight = document.getElementById('weight').value;
+            var time = document.getElementById('time').value;
+
+            // You can send this data to the server using AJAX for database insertion
+            // For simplicity, let's just log the data for now
+            console.log('Routine Name:', routineName);
+            console.log('Exercise ID:', exerciseId);
+            console.log('Sets:', sets);
+            console.log('Weight:', weight);
+            console.log('Time:', time);
+
+            // Optionally, you can redirect the user to another page after form submission
+            // window.location.href = 'success.html';
+        });
+    </script>
+</body>
+
+</html>
