@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Exercise Page</h1>
+        <form id="exerciseForm">
+            <label for="exerciseName">Exercise Name:</label>
+            <input type="text" id="exerciseName" name="exerciseName" required><br><br>
+
+            <label for="setsNeeded">Sets Needed:</label>
+            <input type="checkbox" id="setsNeeded" name="setsNeeded"><br><br>
+
+            <label for="weightNeeded">Weight Needed:</label>
+            <input type="checkbox" id="weightNeeded" name="weightNeeded"><br><br>
+
+            <label for="timeNeeded">Time Needed:</label>
+            <input type="checkbox" id="timeNeeded" name="timeNeeded"><br><br>
+
+            <input type="submit" value="Add Exercise">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('exerciseForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var exerciseName = document.getElementById('exerciseName').value;
+            var setsNeeded = document.getElementById('setsNeeded').checked;
+            var weightNeeded = document.getElementById('weightNeeded').checked;
+            var timeNeeded = document.getElementById('timeNeeded').checked;
+
+            // You can send this data to the server using AJAX for database insertion
+            // For simplicity, let's just log the data for now
+            console.log('Exercise Name:', exerciseName);
+            console.log('Sets Needed:', setsNeeded);
+            console.log('Weight Needed:', weightNeeded);
+            console.log('Time Needed:', timeNeeded);
+
+            // Optionally, you can redirect the user to another page after form submission
+            // window.location.href = 'success.html';
+        });
+    </script>
+</body>
+
+</html>
