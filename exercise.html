@@ -26,6 +26,8 @@
 
             <input type="submit" value="Add Exercise">
         </form>
+        <h2>Added Exercises:</h2>
+        <ul id="exerciseList"></ul>
     </div>
 
     <script>
@@ -37,16 +39,46 @@
             var weightNeeded = document.getElementById('weightNeeded').checked;
             var timeNeeded = document.getElementById('timeNeeded').checked;
 
-            // You can send this data to the server using AJAX for database insertion
-            // For simplicity, let's just log the data for now
-            console.log('Exercise Name:', exerciseName);
-            console.log('Sets Needed:', setsNeeded);
-            console.log('Weight Needed:', weightNeeded);
-            console.log('Time Needed:', timeNeeded);
+             // Create exercise object
+             var exercise = {
+                name: exerciseName,
+                sets: setsNeeded,
+                weight: weightNeeded,
+                time: timeNeeded
+            };
 
-            // Optionally, you can redirect the user to another page after form submission
-            // window.location.href = 'success.html';
+            // Store exercise in localStorage (in a real app, use a backend server and database)
+            var exercises = JSON.parse(localStorage.getItem('exercises')) || [];
+            exercises.push(exercise);
+            localStorage.setItem('exercises', JSON.stringify(exercises));
+
+            // Update the exercise list on the page
+            updateExerciseList(exercises);
+
+            // Clear the form fields
+            document.getElementById('exerciseName').value = '';
+            document.getElementById('setsNeeded').checked = false;
+            document.getElementById('weightNeeded').checked = false;
+            document.getElementById('timeNeeded').checked = false;
         });
+        // Function to update the exercise list on the page
+        function updateExerciseList(exercises) {
+            var exerciseList = document.getElementById('exerciseList');
+            exerciseList.innerHTML = ''; // Clear the list
+
+            exercises.forEach(function(exercise) {
+                var listItem = document.createElement('li');
+                listItem.textContent = 'Exercise Name: ' + exercise.name +
+                    ', Sets Needed: ' + exercise.sets +
+                    ', Weight Needed: ' + exercise.weight +
+                    ', Time Needed: ' + exercise.time;
+
+                exerciseList.appendChild(listItem);
+            });
+        }
+        // Retrieve exercises from localStorage and update the list on page load
+        var storedExercises = JSON.parse(localStorage.getItem('exercises')) || [];
+        updateExerciseList(storedExercises);
     </script>
 </body>
 
