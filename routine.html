@@ -31,44 +31,75 @@
 
             <input type="submit" value="Add to Routine">
         </form>
+
+        <h2>Added Routines:</h2>
+        <table id="routineTable">
+            <thead>
+                <tr>
+                    <th>Routine Name</th>
+                    <th>Exercise</th>
+                    <th>Sets</th>
+                    <th>Weight</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Routine data will be populated dynamically using JavaScript -->
+            </tbody>
+        </table>
     </div>
 
     <script>
-        // Mock exercise data (you can fetch this from your server)
-        var exercises = [
-            { id: 1, name: 'Exercise 1' },
-            { id: 2, name: 'Exercise 2' },
-            { id: 3, name: 'Exercise 3' }
-        ];
-
-        // Populate the exercise dropdown dynamically
+        // Retrieve exercises from localStorage and populate the dropdown
+        var storedExercises = JSON.parse(localStorage.getItem('exercises')) || [];
         var exerciseDropdown = document.getElementById('exercise');
-        exercises.forEach(function(exercise) {
-            var option = document.createElement('option');
-            option.value = exercise.id;
-            option.text = exercise.name;
-            exerciseDropdown.appendChild(option);
+
+        storedExercises.forEach(function(exercise) {
+            if (exercise.sets || exercise.weight || exercise.time) {
+                var option = document.createElement('option');
+                option.value = exercise.name;
+                option.textContent = exercise.name;
+                exerciseDropdown.appendChild(option);
+            }
         });
 
         document.getElementById('routineForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
             var routineName = document.getElementById('routineName').value;
-            var exerciseId = document.getElementById('exercise').value;
+            var selectedExerciseName = document.getElementById('exercise').value;
             var sets = document.getElementById('sets').value;
             var weight = document.getElementById('weight').value;
             var time = document.getElementById('time').value;
 
-            // You can send this data to the server using AJAX for database insertion
-            // For simplicity, let's just log the data for now
-            console.log('Routine Name:', routineName);
-            console.log('Exercise ID:', exerciseId);
-            console.log('Sets:', sets);
-            console.log('Weight:', weight);
-            console.log('Time:', time);
+            // Find the selected exercise from stored exercises
+            var selectedExercise = storedExercises.find(function(exercise) {
+                return exercise.name === selectedExerciseName;
+            });
+            if (selectedExercise) {
+                // Check if Sets, Weight, and Time are required for the selected exercise
+                if ((!selectedExercise.sets && sets) || (!selectedExercise.weight && weight) || (!selectedExercise.time && time)) {
+                    alert('Invalid input for the selected exercise. Please check the requirements.');
+                } else {
+                    // Add the routine to the table
+                    var routineTable = document.getElementById('routineTable').getElementsByTagName('tbody')[0];
+                    var newRow = routineTable.insertRow();
+                    newRow.insertCell().textContent = routineName;
+                    newRow.insertCell().textContent = selectedExerciseName;
+                    newRow.insertCell().textContent = sets;
+                    newRow.insertCell().textContent = weight;
+                    newRow.insertCell().textContent = time;
 
-            // Optionally, you can redirect the user to another page after form submission
-            // window.location.href = 'success.html';
+                    // Clear the form fields
+                    document.getElementById('routineName').value = '';
+                    document.getElementById('exercise').value = '';
+                    document.getElementById('sets').value = '';
+                    document.getElementById('weight').value = '';
+                    document.getElementById('time').value = '';
+                }
+            } else {
+                alert('Invalid exercise selected.');
+            }
         });
     </script>
 </body>
