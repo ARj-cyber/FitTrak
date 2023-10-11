@@ -21,11 +21,12 @@
         <p><strong>Name:</strong> <span id="fullName"></span></p>
         <p><strong>Email:</strong> <span id="email"></span></p>
         <hr>
-        <h2>Your Routines:</h2>
-        <ul>
-            <li>Routine 1: Exercise 1, Exercise 2</li>
-            <li>Routine 2: Exercise 3, Exercise 4</li>
-        </ul>
+        <h2>Routine Details:</h2>
+        <p><strong>Routine Name:</strong> <span id="routineName"></span></p>
+        <p><strong>Exercise ID:</strong> <span id="exerciseId"></span></p>
+        <p><strong>Sets:</strong> <span id="sets"></span></p>
+        <p><strong>Weight:</strong> <span id="weight"></span></p>
+        <p><strong>Time:</strong> <span id="time"></span></p>
         <hr>
         <h2>Recent Insights:</h2>
         <canvas id="barChart"></canvas>
@@ -41,7 +42,16 @@
         
         // // Display the username in the user details section
         // document.getElementById('userName').textContent = username;
+        var routineData = JSON.parse(localStorage.getItem('routineData'));
 
+        // Update routine details in the HTML
+        if (routineData) {
+            document.getElementById('routineName').textContent = routineData.routineName;
+            document.getElementById('exerciseId').textContent = routineData.exerciseId;
+            document.getElementById('sets').textContent = routineData.sets;
+            document.getElementById('weight').textContent = routineData.weight;
+            document.getElementById('time').textContent = routineData.time;
+        }
         // Mock data for the bar chart (exercise names and their corresponding durations in minutes)
         var exerciseData = {
             labels: ['Exercise 1', 'Exercise 2', 'Exercise 3', 'Exercise 4'],
