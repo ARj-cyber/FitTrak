@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to Fitness Tracker</h1>
+        <div class="nav">
+            <a href="exercise.html">Exercise Page</a>
+            <a href="routine.html">Routine Page</a>
+            <a href="insight.html">Insight Page</a>
+        </div>
+        <hr>
+        <h2>User Details:</h2>
+        <p><strong>Name:</strong> <span id="fullName"></span></p>
+        <p><strong>Email:</strong> <span id="email"></span></p>
+        <hr>
+        <h2>Your Routines:</h2>
+        <ul>
+            <li>Routine 1: Exercise 1, Exercise 2</li>
+            <li>Routine 2: Exercise 3, Exercise 4</li>
+        </ul>
+        <hr>
+        <h2>Recent Insights:</h2>
+        <canvas id="barChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Get the username from the session or cookie
+        var userData = JSON.parse(localStorage.getItem('userData'));
+        if (userData) 
+            document.getElementById('fullName').textContent = userData.fullName;
+            document.getElementById('email').textContent = userData.email;
+        
+        // // Display the username in the user details section
+        // document.getElementById('userName').textContent = username;
+
+        // Mock data for the bar chart (exercise names and their corresponding durations in minutes)
+        var exerciseData = {
+            labels: ['Exercise 1', 'Exercise 2', 'Exercise 3', 'Exercise 4'],
+            datasets: [{
+                label: 'Duration (minutes)',
+                data: [30, 45, 20, 60],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        var ctx = document.getElementById('barChart').getContext('2d');
+        var barChart = new Chart(ctx, {
+            type: 'bar',
+            data: exerciseData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
