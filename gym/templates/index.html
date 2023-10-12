@@ -1,0 +1,167 @@
+{% include 'navbar.html' %}
+{% load static %}
+{% block main %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FiTrak</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body background-image: url("C:\GymManagementDjango\gym\static\images\bg.jpg");>
+
+<header>
+<!----Hero Image-->
+<div class="main-title" id="home">
+    <div class="main-text">
+         <h1>Welcome To FiTrak</h1>
+         <p> FiTrak Software is a fully featured Fitness club & Gym Management
+             Software designed for Body Lovers.</p>
+             <a href="{% url 'admin_login' %}" class="main-btn">Login</a>
+    </div>
+</div>
+</header>
+ <!--=============End of Header=============-->
+
+<!---About Section-----------=============-->
+   <section class="about" id="about">
+     <div class="about-center section-center">
+           <!--About Info============-->
+           <article class="about-info">
+               <div>
+                 <h2>Welcome to FiTrak</h2>
+                 <p class="abt-text">Welcome to FiTrak, your one-stop shop for all things fitness. 
+                    We are a state-of-the-art gym with everything you need to reach your fitness goals, 
+                    whether you're a beginner or a seasoned athlete. Enquiry ...!</p>
+                 <a href="{% url 'contact' %}" class="about-btn">Click Me !</a>
+               </div>
+           </article>
+
+           <!--End of About Info-===============-->
+           <!---About Image====-->
+           <article class="about-img">
+               <div class="about-img-container">
+               <img src="{% static 'images/gym4.jpg' %}" class="about-img" alt="about"/>
+               </div>
+           </article>
+           <!--End of About Images========-->
+       </div>
+   </section>
+   <!--End of About Section====================-->
+
+   <!--==============Work out section=====================-->
+   <section id="workout">
+      <div class="section-center">
+       <!--title-============-->
+       <div class="work-title">
+           <h3 class="title">Why Work Out here</h3>
+       </div>
+       <!--End of title===================-->
+       <div class="work-center">
+           <!--workout detail-->
+           <article class="service">
+             <i class="fas fa-bolt"></i>
+             <h3>Trainer</h3>
+             <p>“Fitness is a journey, not a destination. Let me be your guide”</p>
+            </article>
+           <!--End of workout===========-->
+           <!--workout detail-->
+           <article class="service">
+            <i class="fas fa-leaf"></i>
+            <h3>Good training</h3>
+            <p>“One step closer to my goals”</p>
+           </article>
+          <!--End of workout===========-->
+          <!--workout detail-->
+          <article class="service">
+            <i class="fas fa-battery-three-quarters"></i>
+            <h3>Core Strength</h3>
+            <p>“Get fit, get strong, and get healthy with me”</p>
+           </article>
+          <!--End of workout===========-->
+           <!--workout detail-->
+           <article class="service">
+            <i class="fas fa-smile-beam"></i>
+            <h3>Positivity</h3>
+            <p>“Let's Get fit, get strong, and get healthy”</p>
+           </article>
+          <!--End of workout===========-->
+        </div>
+       </div>
+   </section>
+
+   <!--=========End of Work out Section===============-->
+ <!--=========Testimonial  Section===============-->
+ <section id="testimonial">
+    <div class="section-center">
+     <!--title-============-->
+     <div>
+        <h3 class="title">FiTrak</h3>
+        <h6 class="title">Your FiTness ParTner</h6>
+
+ </section>
+ <!--==============End of Testimonial Section===========-->
+<!--==============Classes Section===========-->
+<section id="classes">
+    <div class=" section-center">
+     <!--title-============-->
+     <div>
+        <h3 class="title">Our Classes</h3>
+    </div>
+    <!--End of title===================-->
+    <div class="classes-container">
+        <!--Classes-->
+        <article class="class-item">
+            <!--Card-->
+            <div class="img-container">
+                <img src="{% static 'images/gym5.jpg' %}" alt="class1">
+            </div>
+            <div class="text-container">
+                <h4>Weights</h4>
+
+            </div>
+            <!--end of card-->
+        </article>
+        <!--End of classes-->
+        <!--Classes-->
+        <article class="class-item">
+            <!--Card-->
+            <div class="img-container">
+                <img src="{% static 'images/Crossfit.jpg' %}" alt="class1">
+            </div>
+            <div class="text-container">
+                <h4>Crossfit</h4>
+
+            </div>
+            <!--end of card-->
+        </article>
+        <!--End of classes-->
+<!--Classes-->
+<article class="class-item">
+    <!--Card-->
+    <div class="img-container">
+        <img src="{% static 'images/Pilates.jpg' %}" alt="class1">
+    </div>
+    <div class="text-container">
+        <h4>Pilates</h4>
+
+    </div>
+    <!--end of card-->
+</article>
+<!--End of classes-->
+
+    </div>
+    </div>
+</section>
+<!--==============End of Classes Section===========-->
+
+<!---Footer===========-->
+<footer>
+
+</footer>
+<!--=============End of Footer===========-->
+
+</body>
+</html>
+{% endblock %}
