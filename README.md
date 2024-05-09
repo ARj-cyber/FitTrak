@@ -27,3 +27,6 @@ The `routine` table is responsible for tracking fitness routines created by user
 - `sets`: An integer field indicating the number of sets for the exercise within the routine.
 - `weight`: An integer field representing the weight (optional, can be null) for the exercise within the routine.
 - `time`: An integer field representing the time duration (optional, can be null) for the exercise within the routine.
+
+
+###College Project 
